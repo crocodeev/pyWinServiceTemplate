@@ -5,10 +5,7 @@ import win32profile
 import win32process
 import win32con
 
-processName = 'notepad.exe'
-processPath = 'C:\\WINDOWS\\system32\\notepad.exe'
-
-def startProcess():
+def startProcess(processPath):
         # 1. GET USER TOKEN
         console_session_id = win32ts.WTSGetActiveConsoleSessionId()
         console_user_token = win32ts.WTSQueryUserToken(console_session_id)
@@ -24,7 +21,7 @@ def startProcess():
 
         # 4. CREATE PROCESS AS USER
         win32process.CreateProcessAsUser(console_user_token,
-                                         'notepad.exe',
+                                         processPath,
                                          None,
                                          None,
                                          None,
@@ -35,7 +32,7 @@ def startProcess():
                                          startupInfo)
 
 
-def isprocessrunning():
+def isprocessrunning(processName, processPath):
     isExist = False
     for process in psutil.process_iter():
         try:
@@ -44,6 +41,6 @@ def isprocessrunning():
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             pass
     if isExist == False:
-        startProcess()
+        startProcess(processPath)
         isExist = False
 

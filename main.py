@@ -13,11 +13,15 @@ import time
 
 logging.basicConfig(filename="service.log", level=logging.DEBUG)
 
+firstProcessName = 'in-co-test.exe'
+firstProcessPath = 'E:\LINKS\data_chizzza_ss\inplay-control\in-co-test.exe'
+secondProcessName = 'in-co-supp.exe'
+secondProcessPath = 'E:\LINKS\data_chizzza_ss\inplay-support\in-co-supp.exe'
 
-class ExampleService(win32serviceutil.ServiceFramework):
-    _svc_name_ = "AExampleService"
-    _svc_display_name_ = "AExample Service"
-    _svc_description_ = "Example description"
+class WatchDogService(win32serviceutil.ServiceFramework):
+    _svc_name_ = "incoWatchDog"
+    _svc_display_name_ = "in-co WatchDog"
+    _svc_description_ = "service, that check every 10 sec is in-co running, and if not - start it"
 
     def __init__(self, args):
         win32serviceutil.ServiceFramework.__init__(self, args)
@@ -40,9 +44,10 @@ class ExampleService(win32serviceutil.ServiceFramework):
         logging.info("SERVICE MAIN ENTERED !!")
         rc = None
         while rc != win32event.WAIT_OBJECT_0:
-            isprocessrunning()
+            isprocessrunning(firstProcessName, firstProcessPath)
+            isprocessrunning(secondProcessName, secondProcessPath)
             rc = win32event.WaitForSingleObject(self.hWaitStop, 10000)
-            time.sleep(30)
+            time.sleep(10)
         servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,
                               servicemanager.PYS_SERVICE_STOPPED,
                               (self._svc_name_, ''))
@@ -51,7 +56,7 @@ class ExampleService(win32serviceutil.ServiceFramework):
 if __name__ == '__main__':
     if len(sys.argv) == 1:
         servicemanager.Initialize()
-        servicemanager.PrepareToHostSingle(ExampleService)
+        servicemanager.PrepareToHostSingle(WatchDogService)
         servicemanager.StartServiceCtrlDispatcher()
     else:
-        win32serviceutil.HandleCommandLine(ExampleService)
+        win32serviceutil.HandleCommandLine(WatchDogService)
