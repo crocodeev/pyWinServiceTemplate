@@ -1,0 +1,8 @@
+build/
+__pycache__/
+build/
+dist/
+venv/
+.idea/
+main.spec
+service.log
