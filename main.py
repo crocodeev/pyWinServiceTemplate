@@ -13,8 +13,7 @@ from logg import logg
 
 processArray = [('in-co-test.exe', 'E:\\LINKS\\data_chizzza_ss\\inplay-control\\in-co-test.exe'),
                 ('in-co-supp.exe', 'E:\\LINKS\\data_chizzza_ss\\inplay-support\\in-co-supp.exe'),
-                ('mediaroom3.exe', 'E:\\LINKS\\data_chizzza_ss\\mediaroom3.exe'),
-                ('listenBot.exe', 'E:\\LINKS\\data_chizzza_ss\\listenBot.exe')]
+                ('mediaroom3.exe', 'E:\\LINKS\\data_chizzza_ss\\mediaroom3.exe')]
 
 processArray2 = [('testWebServer.exe', 'C:\\incoWatchDog\\testWebServer.exe')]
 
