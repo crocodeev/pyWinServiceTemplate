@@ -5,19 +5,18 @@ import win32service
 import win32event
 import servicemanager
 
-
 import socket
 import sys
 import time
 
 from logg import logg
 
-processArray2 = [('in-co-test.exe', 'E:\\LINKS\\data_chizzza_ss\\inplay-control\\in-co-test.exe'),
-                 ('in-co-supp.exe', 'E:\\LINKS\\data_chizzza_ss\\inplay-support\\in-co-supp.exe'),
-                 ('mediaroom3.exe', 'E:\LINKS\data_chizzza_ss\mediaroom3.exe')]
+processArray = [('in-co-test.exe', 'E:\\LINKS\\data_chizzza_ss\\inplay-control\\in-co-test.exe'),
+                ('in-co-supp.exe', 'E:\\LINKS\\data_chizzza_ss\\inplay-support\\in-co-supp.exe'),
+                ('mediaroom3.exe', 'E:\\LINKS\\data_chizzza_ss\\mediaroom3.exe'),
+                ('listenBot.exe', 'E:\\LINKS\\data_chizzza_ss\\listenBot.exe')]
 
-processArray = [('testWebServer.exe', 'C:\\incoWatchDog\\testWebServer.exe')]
-
+processArray2 = [('testWebServer.exe', 'C:\\incoWatchDog\\testWebServer.exe')]
 
 
 class WatchDogService(win32serviceutil.ServiceFramework):
