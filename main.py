@@ -3,6 +3,7 @@ from task import isprocessrunning, killProcess
 import win32serviceutil
 import win32service
 import win32event
+import win32timezone
 import servicemanager
 
 import socket
